@@ -2,26 +2,21 @@ pipeline{
     agent any
 
     stages{
-        stage('Checkout SCM'){
-            steps{
-                checkout scm
-            }
-        }
         stage('Install Dependencies'){
             steps{
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Train Model'){
             steps{
-                sh 'python src/train.py'
+                bat 'python src/train.py'
             }
         }
 
         stage('Test Model'){
             steps{
-                sh 'python src/test.py'
+                bat 'python src/test.py'
             }
         }
 
