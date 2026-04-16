@@ -9,19 +9,25 @@ pipeline{
         }
         stage('Install Dependencies'){
             steps{
-                pip install -r requirements.txt
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Train Model'){
             steps{
-                python sr/train.py
+                sh 'python src/train.py'
             }
         }
 
         stage('Test Model'){
             steps{
-                python src/test.py
+                sh 'python src/test.py'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Trigger Render deployment'
             }
         }
     }
