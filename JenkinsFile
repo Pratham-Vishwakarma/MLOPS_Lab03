@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Install Dependencies'){
+            steps{
+                pip install -r requirements.txt
+            }
+        }
+
+        stage('Train Model'){
+            steps{
+                python sr/train.py
+            }
+        }
+
+        stage('Test Model'){
+            steps{
+                python src/test.py
+            }
+        }
+    }
+
+}
